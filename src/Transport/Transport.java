@@ -3,18 +3,18 @@ package Transport;
 import java.util.Objects;
 
 public abstract class Transport {
-    private final String BRAND;
-    private final String MODEL;
-    private final int YEAR_OF_REALISE;
-    private final String COUNTRY;
+    private final String brand;
+    private final String model;
+    private final int yearOfRealise;
+    private final String country;
     private String color;
     private int maxSpeed;
 
-    public Transport(String BRAND, String MODEL, int YEAR_OF_REALISE, String COUNTRY, String color, int maxSpeed) {
-        this.BRAND = BRAND;
-        this.MODEL = MODEL;
-        this.YEAR_OF_REALISE = YEAR_OF_REALISE;
-        this.COUNTRY = COUNTRY;
+    public Transport(String brand, String model, int yearOfRealise, String country, String color, int maxSpeed) {
+        this.brand = brand;
+        this.model = model;
+        this.yearOfRealise = yearOfRealise;
+        this.country = country;
         if (!color.isEmpty() || !color.isBlank()) {
             this.color = color;
         } else {
@@ -29,19 +29,19 @@ public abstract class Transport {
     }
 
     public final String getBRAND() {
-        return BRAND;
+        return brand;
     }
 
     public final String getMODEL() {
-        return MODEL;
+        return model;
     }
 
     public final int getYEAR_OF_REALISE() {
-        return YEAR_OF_REALISE;
+        return yearOfRealise;
     }
 
     public final String getCOUNTRY() {
-        return COUNTRY;
+        return country;
     }
 
     public String getColor() {
@@ -65,21 +65,21 @@ public abstract class Transport {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transport transport = (Transport) o;
-        return YEAR_OF_REALISE == transport.YEAR_OF_REALISE && maxSpeed == transport.maxSpeed && Objects.equals(BRAND, transport.BRAND) && Objects.equals(MODEL, transport.MODEL) && Objects.equals(COUNTRY, transport.COUNTRY) && Objects.equals(color, transport.color);
+        return yearOfRealise == transport.yearOfRealise && maxSpeed == transport.maxSpeed && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(country, transport.country) && Objects.equals(color, transport.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(BRAND, MODEL, YEAR_OF_REALISE, COUNTRY, color, maxSpeed);
+        return Objects.hash(brand, model, yearOfRealise, country, color, maxSpeed);
     }
 
     @Override
     public String toString() {
         return "Transport{" +
-                "BRAND='" + BRAND + '\'' +
-                ", MODEL='" + MODEL + '\'' +
-                ", YEAR_OF_REALISE=" + YEAR_OF_REALISE +
-                ", COUNTRY='" + COUNTRY + '\'' +
+                "BRAND='" + brand + '\'' +
+                ", MODEL='" + model + '\'' +
+                ", YEAR_OF_REALISE=" + yearOfRealise +
+                ", COUNTRY='" + country + '\'' +
                 ", color='" + color + '\'' +
                 ", maxSpeed=" + maxSpeed +
                 '}';

@@ -2,7 +2,8 @@ package Transport;
 
 public class Car extends Transport {
 
-    public Car(String BRAND, String MODEL, int YEAR_OF_REALISE, String COUNTRY, String color, int maxSpeed) {
-        super(BRAND, MODEL, YEAR_OF_REALISE, COUNTRY, color, maxSpeed);
+
+    public Car(String brand, String model, int yearOfRealise, String country, String color, int maxSpeed) {
+        super(brand, model, yearOfRealise, country, color, maxSpeed);
     }
 }
