@@ -15,7 +15,7 @@ public abstract class Transport {
         this.model = model;
         this.yearOfRealise = yearOfRealise;
         this.country = country;
-        if (!color.isEmpty() || !color.isBlank()) {
+        if (!color.isEmpty() && !color.isBlank() && color != null) {
             this.color = color;
         } else {
             color = "white";
@@ -28,19 +28,19 @@ public abstract class Transport {
 
     }
 
-    public final String getBRAND() {
+    public final String getBrand() {
         return brand;
     }
 
-    public final String getMODEL() {
+    public final String getModel() {
         return model;
     }
 
-    public final int getYEAR_OF_REALISE() {
+    public final int getYearOfRealise() {
         return yearOfRealise;
     }
 
-    public final String getCOUNTRY() {
+    public final String getCountry() {
         return country;
     }
 
