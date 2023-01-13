@@ -11,5 +11,13 @@ public class PassengerCars extends Transport<DriverCategoryB> {
     public PassengerCars(String brand, String model, double engineCapacity, DriverCategoryB driver) {
         super(brand, model, engineCapacity, driver);
     }
+    @Override
+    public void startMoving() {
+        System.out.println("Легковая машина марки " + getBrand() + " начинает движение");
+    }
+    @Override
+    public void finishMoving() {
+        System.out.println("Легковая машина марки " + getBrand() + " заканчивает движение");
+    }
 
 }

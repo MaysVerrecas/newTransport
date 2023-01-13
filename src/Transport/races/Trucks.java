@@ -12,6 +12,14 @@ public class Trucks extends Transport<DriverCategoryC>  {
     public Trucks(String brand, String model, double engineCapacity, DriverCategoryC driver) {
         super(brand, model, engineCapacity, driver);
     }
+    @Override
+    public void startMoving() {
+        System.out.println("Грузовик марки " + getBrand() + " начинает движение");
+    }
+    @Override
+    public void finishMoving() {
+        System.out.println("Грузовик марки " + getBrand() + " заканчивает движение");
+    }
 
 
 }

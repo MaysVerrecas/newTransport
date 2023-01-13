@@ -62,12 +62,8 @@ public abstract class Transport<T extends Driver>  implements Competing {
         return model;
     }
 
-    public void startMoving() {
-        System.out.println("Машина марки " + getBrand() + " начинает движение");
-    }
-    public void finishMoving() {
-        System.out.println("Машина марки " + getBrand() + " заканчивает движение");
-    }
+    public abstract void startMoving();
+    public abstract void finishMoving() ;
 
     public T getDriver() {
         return driver;
