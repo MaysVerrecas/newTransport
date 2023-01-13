@@ -5,7 +5,7 @@ import Transport.races.Competing;
 
 import java.util.Objects;
 
-public abstract class Transport<T extends Driver>  implements Competing {
+public abstract class Transport<T extends Driver> {
     private final String brand;
     private final String model;
     private final T driver;
@@ -14,12 +14,12 @@ public abstract class Transport<T extends Driver>  implements Competing {
     private int allTime; // общее время до финиша
 
     public Transport(String brand, String model, double engineCapacity, T driver) {
-        if (brand.isBlank() || brand.isEmpty() || brand == null) {
+        if (brand == null || brand.isBlank() || brand.isEmpty()) {
             this.brand = "Default";
         } else {
             this.brand = brand;
         }
-        if (model.isEmpty() || model.isBlank() || model == null) {
+        if (model == null || model.isEmpty() || model.isBlank()) {
             this.model = brand;
         } else {
             this.model = model;
@@ -33,27 +33,6 @@ public abstract class Transport<T extends Driver>  implements Competing {
 
     }
 
-    @Override
-    public void pitStop() {
-        System.out.println("Проводим Пит-Стоп. Меняем стертые шины, проверяем безопастность");
-        allTime += 120; //допустим 2 минуты занимает пит-стоп
-    }
-
-    @Override
-    public void bestLapTime() {
-        //сравниваем время всех кругов бла-бла-бла
-        System.out.println("Лучшее время за круг - ..");
-    }
-
-    @Override
-    public void maxSpeed() {
-        //выводим максимальную зафиксированную срокость
-        System.out.println("Максимальная скорость - ");
-    }
-    public int getAllTime() {
-        return allTime;
-    }
-
     public final String getBrand() {
         return brand;
     }
@@ -63,7 +42,8 @@ public abstract class Transport<T extends Driver>  implements Competing {
     }
 
     public abstract void startMoving();
-    public abstract void finishMoving() ;
+    public abstract void finishMoving();
+    public abstract void printType();
 
     public T getDriver() {
         return driver;
