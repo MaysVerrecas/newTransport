@@ -1,21 +1,15 @@
 package Transport.races;
 
-import Drivers.CategoryB;
+import Drivers.DriverCategoryB;
 import Transport.Transport;
 
-import java.time.LocalTime;
-
-public class PassengerCars extends Transport implements CategoryB {
+public class PassengerCars extends Transport<DriverCategoryB> {
     private int allTime; // общее время до финиша
 
 
 
-    public PassengerCars(String brand, String model, double engineCapacity) {
-        super(brand, model, engineCapacity);
+    public PassengerCars(String brand, String model, double engineCapacity, DriverCategoryB driver) {
+        super(brand, model, engineCapacity, driver);
     }
 
-    @Override
-    public String getCategory() {
-        return CategoryB.category;
-    }
 }

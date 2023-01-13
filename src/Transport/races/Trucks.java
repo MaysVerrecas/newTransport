@@ -1,21 +1,17 @@
 package Transport.races;
 
-import Drivers.CategoryB;
-import Drivers.CategoryC;
+import Drivers.DraverCategoryD;
+import Drivers.DriverCategoryC;
 import Transport.Transport;
 
-public class Trucks extends Transport implements CategoryC {
+public class Trucks extends Transport<DriverCategoryC>  {
     private int allTime; // общее время до финиша
 
 
 
-    public Trucks(String brand, String model, double engineCapacity) {
-        super(brand, model, engineCapacity);
+    public Trucks(String brand, String model, double engineCapacity, DriverCategoryC driver) {
+        super(brand, model, engineCapacity, driver);
     }
 
 
-    @Override
-    public String getCategory() {
-        return CategoryC.category;
-    }
 }

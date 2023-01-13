@@ -1,41 +1,67 @@
 package Transport;
 
+import Drivers.DraverCategoryD;
 import Drivers.Driver;
+import Drivers.DriverCategoryB;
+import Drivers.DriverCategoryC;
 import Transport.races.Bus;
 import Transport.races.PassengerCars;
 import Transport.races.Trucks;
 
 public class Main {
     public static void main(String[] args) {
-//        Car bmw = new Car("BMW", "X6", 2022, "Russia", "black", 200);
-//        Car kia = new Car("Kia", "Sportage", 2018, "Korea", "Black", 300);
-//        System.out.println(bmw + "\n" + kia);
-//        System.out.println();
-//        Bus mers = new Bus("Mersedes", "KASHKALI", 2011, "Germany", "blue", 120);
-//        Bus vaz = new Bus("VAZ", "MARSHRUTKA", 1994, "Russia", "yellow", 85);
-//        Bus gaz = new Bus("GAZ", "EDETILADNO", 1988, "Russia", "white", 90);
-//        System.out.println(mers + "\n" + vaz + "\n" + gaz);
 
+        for (int i = 1; i <= 4; i++) {
+            DriverCategoryB driverB = new DriverCategoryB(
+                    "Водитель категории B" + i,
+                    true,
+                    2
+            );
 
-        Bus bus1 = new Bus("Mersedes", "Kardo", 1.9);
-        Bus bus2 = new Bus("VAZ", "Marshrutka", 1.5);
-        Bus bus3 = new Bus("GAZ", "Nur", 2.0);
-        Bus bus4 = new Bus("BB", "Herso", 2.1);
+            PassengerCars car = new PassengerCars(
+                    "Brand",
+                    "model",
+                    1.9,
+                    driverB
+            );
 
-        PassengerCars car1 = new PassengerCars("BMW", "X6", 3.0);
-        PassengerCars car2 = new PassengerCars("Kia", "Sportage V|", 2.4);
-        PassengerCars car3 = new PassengerCars("Mersedes", "Mersu", 2.4);
-        PassengerCars car4 = new PassengerCars("Lada", "Kalina", 1.8);
+            DraverCategoryD driverD = new DraverCategoryD(
+                    "Водитель категории D" + i,
+                    true,
+                    2
+            );
 
-        Trucks truck1 = new Trucks("Mersedes", "GD12", 4.0);
-        Trucks truck2 = new Trucks("Mersedes", "F1", 2.9);
-        Trucks truck3 = new Trucks("Kirkeg", "Neds x2", 3.5);
-        Trucks truck4 = new Trucks("Kirkeg", "Wolf bers", 4.0);
+            Bus bus = new Bus(
+                    "Brand",
+                    "model",
+                    1.2,
+                    driverD
+            );
 
-        Driver misha = new Driver<PassengerCars>("Максим Игорьевич Потемкин", "B", 20);
-        Driver misha2 = new Driver<PassengerCars>("Максим Игорьевич Потемкин", "C", 20);
-        misha.startMoving(car2);
-        misha2.startMoving(car4); //  Водитель не может начать движение на машине, нет прав.
+            DriverCategoryC driverC = new DriverCategoryC(
+                    "Водитель категории C" + i,
+                    true,
+                    2
+            );
 
+            Trucks truck = new Trucks(
+                    "Brand",
+                    "model",
+                    1.2,
+                    driverC
+            );
+
+            printInfo(car);
+            printInfo(bus);
+            printInfo(truck);
+
+        }
+
+    }
+
+    private static void printInfo(Transport<?> transport) {
+        System.out.println("водитель " + transport.getDriver().getFullName() +
+                " управляет автомобилем " + transport.getBrand() + " " +
+                transport.getModel() + " и будет участвовать в заезде");
     }
 }

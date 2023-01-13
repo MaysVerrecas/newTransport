@@ -1,28 +1,35 @@
 package Transport;
 
+import Drivers.Driver;
 import Transport.races.Competing;
 
 import java.util.Objects;
 
-public abstract class Transport  implements Competing {
+public abstract class Transport<T extends Driver>  implements Competing {
     private final String brand;
     private final String model;
-//    private final int yearOfRealise;
-//    private final String country;
-//    private String color;
-//    private int maxSpeed;
+    private final T driver;
     private double engineCapacity;
 
     private int allTime; // общее время до финиша
 
-    public Transport(String brand, String model, double engineCapacity) {
-        this.brand = brand;
-        this.model = model;
+    public Transport(String brand, String model, double engineCapacity, T driver) {
+        if (brand.isBlank() || brand.isEmpty() || brand == null) {
+            this.brand = "Default";
+        } else {
+            this.brand = brand;
+        }
+        if (model.isEmpty() || model.isBlank() || model == null) {
+            this.model = brand;
+        } else {
+            this.model = model;
+        }
         if (engineCapacity <= 0) {
             engineCapacity = 1.5;
         } else {
             this.engineCapacity = engineCapacity;
         }
+        this.driver = driver;
 
     }
 
@@ -47,24 +54,6 @@ public abstract class Transport  implements Competing {
         return allTime;
     }
 
-//     public Transport(String brand, String model, int yearOfRealise, String country, String color, int maxSpeed) {
-//        this.brand = brand;
-//        this.model = model;
-//        this.yearOfRealise = yearOfRealise;
-//        this.country = country;
-//        if (!color.isEmpty() && !color.isBlank() && color != null) {
-//            this.color = color;
-//        } else {
-//            color = "white";
-//        }
-//        if (maxSpeed >= 0) {
-//            this.maxSpeed = maxSpeed;
-//        } else {
-//            maxSpeed = 0;
-//        }
-//
-//    }
-
     public final String getBrand() {
         return brand;
     }
@@ -73,61 +62,16 @@ public abstract class Transport  implements Competing {
         return model;
     }
 
-//    public final int getYearOfRealise() {
-//        return yearOfRealise;
-//    }
-//
-//    public final String getCountry() {
-//        return country;
-//    }
-
-//    public String getColor() {
-//        return color;
-//    }
-//
-//    public void setColor(String color) {
-//        this.color = color;
-//    }
-//
-//    public int getMaxSpeed() {
-//        return maxSpeed;
-//    }
-//
-//    public void setMaxSpeed(int maxSpeed) {
-//        this.maxSpeed = maxSpeed;
-//    }
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Transport transport = (Transport) o;
-//        return yearOfRealise == transport.yearOfRealise && maxSpeed == transport.maxSpeed && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(country, transport.country) && Objects.equals(color, transport.color);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(brand, model, yearOfRealise, country, color, maxSpeed);
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "Transport{" +
-//                "BRAND='" + brand + '\'' +
-//                ", MODEL='" + model + '\'' +
-//                ", YEAR_OF_REALISE=" + yearOfRealise +
-//                ", COUNTRY='" + country + '\'' +
-//                ", color='" + color + '\'' +
-//                ", maxSpeed=" + maxSpeed +
-//                '}';
-//    }
     public void startMoving() {
-
+        System.out.println("Машина марки " + getBrand() + " начинает движение");
     }
     public void finishMoving() {
-
+        System.out.println("Машина марки " + getBrand() + " заканчивает движение");
     }
 
+    public T getDriver() {
+        return driver;
+    }
 
     public double getEngineCapacity() {
         return engineCapacity;
@@ -160,5 +104,4 @@ public abstract class Transport  implements Competing {
                 ", engineCapacity=" + engineCapacity +
                 '}';
     }
-    public abstract String getCategory();
 }

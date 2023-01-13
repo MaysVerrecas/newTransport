@@ -1,21 +1,17 @@
 package Transport.races;
 
-import Drivers.CategoryB;
-import Drivers.CategoryD;
+import Drivers.DraverCategoryD;
+import Drivers.DriverCategoryC;
 import Transport.Transport;
 
-public class Bus extends Transport implements CategoryD {
+public class Bus extends Transport<DraverCategoryD> {
 
 
 
-    public Bus(String brand, String model, double engineCapacity) {
-        super(brand, model, engineCapacity);
+    public Bus(String brand, String model, double engineCapacity, DraverCategoryD driver) {
+        super(brand, model, engineCapacity,driver);
     }
 
-    @Override
-    public String getCategory() {
-        return CategoryD.category;
-    }
 
 
 //    public Bus(String brand, String model, int yearOfRealise, String country, String color, int maxSpeed) {
