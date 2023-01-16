@@ -1,7 +1,7 @@
 package Transport;
 
-import Drivers.Driver;
-import Transport.races.Competing;
+import Transport.Drivers.Driver;
+import Transport.exeption.InvalidTypeLicenseExeption;
 
 import java.util.Objects;
 
@@ -12,6 +12,7 @@ public abstract class Transport<T extends Driver> {
     private double engineCapacity;
 
     private int allTime; // общее время до финиша
+
 
     public Transport(String brand, String model, double engineCapacity, T driver) {
         if (brand == null || brand.isBlank() || brand.isEmpty()) {
@@ -44,6 +45,7 @@ public abstract class Transport<T extends Driver> {
     public abstract void startMoving();
     public abstract void finishMoving();
     public abstract void printType();
+    public abstract void passDiagnostics() throws InvalidTypeLicenseExeption;
 
     public T getDriver() {
         return driver;
