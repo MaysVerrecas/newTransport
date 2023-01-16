@@ -1,7 +1,9 @@
 package Transport.races;
 
-import Drivers.DriverCategoryC;
+import Transport.Drivers.Driver;
+import Transport.Drivers.DriverCategoryC;
 import Transport.Transport;
+import Transport.exeption.InvalidTypeLicenseExeption;
 
 public class Trucks extends Transport<DriverCategoryC> implements Competing {
     public enum LoadCapacity{
@@ -29,6 +31,7 @@ public class Trucks extends Transport<DriverCategoryC> implements Competing {
     private int allTime; // общее время до финиша
     private final LoadCapacity loadCapacity;
     private String type;
+    private final Driver.Category needCategory = Driver.Category.C;
 
 
 
@@ -72,6 +75,16 @@ public class Trucks extends Transport<DriverCategoryC> implements Competing {
         }
     }
 
+    @Override
+    public void passDiagnostics() throws InvalidTypeLicenseExeption {
+        if (getDriver().getCategory() != getNeedCategory()) {
+            //без прав он не может быть - ограничина енамом и конструктором.
+            throw new InvalidTypeLicenseExeption("Нет нужных прав.");
+        } else {
+            System.out.println("Грузовой автомобиль успешно прошел техосмотр!");
+        }
+    }
+
     public int getAllTime() {
         return allTime;
     }
@@ -86,5 +99,9 @@ public class Trucks extends Transport<DriverCategoryC> implements Competing {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Driver.Category getNeedCategory() {
+        return needCategory;
     }
 }

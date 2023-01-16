@@ -1,6 +1,7 @@
 package Transport.races;
 
-import Drivers.DraverCategoryD;
+import Transport.Drivers.DraverCategoryD;
+import Transport.Drivers.Driver;
 import Transport.Transport;
 
 public class Bus extends Transport<DraverCategoryD> implements Competing{
@@ -30,10 +31,16 @@ public class Bus extends Transport<DraverCategoryD> implements Competing{
     private int allTime;
     private final Capacity capacity;
     private String type;
+    private final Driver.Category needCategory = Driver.Category.D;
 
 
 
-    public Bus(String brand, String model, double engineCapacity, DraverCategoryD driver, Capacity capacity) {
+    public Bus(String brand,
+               String model,
+               double engineCapacity,
+               DraverCategoryD driver,
+               Capacity capacity)
+    {
         super(brand, model, engineCapacity,driver);
         this.capacity = capacity;
     }
@@ -54,6 +61,11 @@ public class Bus extends Transport<DraverCategoryD> implements Competing{
             System.out.println("Тип транспортного средства = " + getType());
             System.out.println(getCapacity().toString());
         }
+    }
+
+    @Override
+    public void passDiagnostics() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException("Автобусы не могут проходить техосмотр");
     }
 
     @Override
@@ -88,5 +100,9 @@ public class Bus extends Transport<DraverCategoryD> implements Competing{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Driver.Category getNeedCategory() {
+        return needCategory;
     }
 }

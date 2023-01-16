@@ -1,8 +1,10 @@
-package Drivers;
+package Transport.Drivers;
 
 public class DraverCategoryD extends Driver{
-    public DraverCategoryD(String fullName, boolean drivingLicense, int experience) {
-        super(fullName, drivingLicense, experience);
+
+
+    public DraverCategoryD(String fullName, boolean drivingLicense, int experience, Category category) {
+        super(fullName, drivingLicense, experience, category);
     }
     @Override
     public void startMove() {
