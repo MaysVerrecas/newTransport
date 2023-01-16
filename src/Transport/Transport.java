@@ -1,30 +1,35 @@
 package Transport;
 
+import Drivers.Driver;
+import Transport.races.Competing;
+
 import java.util.Objects;
 
-public abstract class Transport {
+public abstract class Transport<T extends Driver> {
     private final String brand;
     private final String model;
-    private final int yearOfRealise;
-    private final String country;
-    private String color;
-    private int maxSpeed;
+    private final T driver;
+    private double engineCapacity;
 
-    public Transport(String brand, String model, int yearOfRealise, String country, String color, int maxSpeed) {
-        this.brand = brand;
-        this.model = model;
-        this.yearOfRealise = yearOfRealise;
-        this.country = country;
-        if (!color.isEmpty() && !color.isBlank() && color != null) {
-            this.color = color;
+    private int allTime; // общее время до финиша
+
+    public Transport(String brand, String model, double engineCapacity, T driver) {
+        if (brand == null || brand.isBlank() || brand.isEmpty()) {
+            this.brand = "Default";
         } else {
-            color = "white";
+            this.brand = brand;
         }
-        if (maxSpeed >= 0) {
-            this.maxSpeed = maxSpeed;
+        if (model == null || model.isEmpty() || model.isBlank()) {
+            this.model = brand;
         } else {
-            maxSpeed = 0;
+            this.model = model;
         }
+        if (engineCapacity <= 0) {
+            engineCapacity = 1.5;
+        } else {
+            this.engineCapacity = engineCapacity;
+        }
+        this.driver = driver;
 
     }
 
@@ -36,28 +41,22 @@ public abstract class Transport {
         return model;
     }
 
-    public final int getYearOfRealise() {
-        return yearOfRealise;
+    public abstract void startMoving();
+    public abstract void finishMoving();
+    public abstract void printType();
+
+    public T getDriver() {
+        return driver;
     }
 
-    public final String getCountry() {
-        return country;
+    public double getEngineCapacity() {
+        return engineCapacity;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
+    public void setEngineCapacity(double engineCapacity) {
+        if (engineCapacity > 0) {
+            this.engineCapacity = engineCapacity;
+        }
     }
 
     @Override
@@ -65,23 +64,20 @@ public abstract class Transport {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transport transport = (Transport) o;
-        return yearOfRealise == transport.yearOfRealise && maxSpeed == transport.maxSpeed && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(country, transport.country) && Objects.equals(color, transport.color);
+        return Double.compare(transport.engineCapacity, engineCapacity) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, yearOfRealise, country, color, maxSpeed);
+        return Objects.hash(brand, model, engineCapacity);
     }
 
     @Override
     public String toString() {
         return "Transport{" +
-                "BRAND='" + brand + '\'' +
-                ", MODEL='" + model + '\'' +
-                ", YEAR_OF_REALISE=" + yearOfRealise +
-                ", COUNTRY='" + country + '\'' +
-                ", color='" + color + '\'' +
-                ", maxSpeed=" + maxSpeed +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engineCapacity=" + engineCapacity +
                 '}';
     }
 }
