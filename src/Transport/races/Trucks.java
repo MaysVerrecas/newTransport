@@ -4,6 +4,9 @@ import Transport.Drivers.Driver;
 import Transport.Drivers.DriverCategoryC;
 import Transport.Transport;
 import Transport.exeption.InvalidTypeLicenseExeption;
+import Transport.staff.Mechanics;
+
+import java.util.List;
 
 public class Trucks extends Transport<DriverCategoryC> implements Competing {
     public enum LoadCapacity{
@@ -83,6 +86,10 @@ public class Trucks extends Transport<DriverCategoryC> implements Competing {
         } else {
             System.out.println("Грузовой автомобиль успешно прошел техосмотр!");
         }
+    }
+    @Override
+    public void repair() {
+        System.out.println("Машина " + getBrand() + " " + getModel() + " починена :)");
     }
 
     public int getAllTime() {

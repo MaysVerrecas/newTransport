@@ -4,6 +4,9 @@ import Transport.Drivers.Driver;
 import Transport.Drivers.DriverCategoryB;
 import Transport.Transport;
 import Transport.exeption.InvalidTypeLicenseExeption;
+import Transport.staff.Mechanics;
+
+import java.util.List;
 
 public class PassengerCars extends Transport<DriverCategoryB> implements Competing {
     public enum BodyType {
@@ -29,7 +32,11 @@ public class PassengerCars extends Transport<DriverCategoryB> implements Competi
 
 
 
-    public PassengerCars(String brand, String model, double engineCapacity, DriverCategoryB driver, BodyType bodyType) {
+    public PassengerCars(String brand,
+                         String model,
+                         double engineCapacity,
+                         DriverCategoryB driver,
+                         BodyType bodyType) {
         super(brand, model, engineCapacity, driver);
         this.bodyType = bodyType;
     }
@@ -76,6 +83,11 @@ public class PassengerCars extends Transport<DriverCategoryB> implements Competi
         } else {
             System.out.println("Легковой автомобиль успешно прошел техосмотр!");
         }
+    }
+
+    @Override
+    public void repair() {
+        System.out.println("Машина " + getBrand() + " " + getModel() + " починена :)");
     }
 
     public int getAllTime() {

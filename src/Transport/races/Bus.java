@@ -3,6 +3,9 @@ package Transport.races;
 import Transport.Drivers.DraverCategoryD;
 import Transport.Drivers.Driver;
 import Transport.Transport;
+import Transport.staff.Mechanics;
+
+import java.util.List;
 
 public class Bus extends Transport<DraverCategoryD> implements Competing{
     public enum Capacity{
@@ -41,7 +44,7 @@ public class Bus extends Transport<DraverCategoryD> implements Competing{
                DraverCategoryD driver,
                Capacity capacity)
     {
-        super(brand, model, engineCapacity,driver);
+        super(brand, model, engineCapacity, driver);
         this.capacity = capacity;
     }
     @Override
@@ -84,6 +87,10 @@ public class Bus extends Transport<DraverCategoryD> implements Competing{
     public void maxSpeed() {
         //выводим максимальную зафиксированную срокость
         System.out.println("Максимальная скорость - ");
+    }
+    @Override
+    public void repair() {
+        System.out.println("Машина " + getBrand() + " " + getModel() + " починена :)");
     }
 
     public int getAllTime() {
