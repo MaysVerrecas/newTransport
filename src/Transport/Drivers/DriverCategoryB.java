@@ -1,8 +1,9 @@
-package Drivers;
+package Transport.Drivers;
 
 public class DriverCategoryB extends Driver{
-    public DriverCategoryB(String fullName, boolean drivingLicense, int experience) {
-        super(fullName, drivingLicense, experience);
+
+    public DriverCategoryB(String fullName, boolean drivingLicense, int experience, Category category) {
+        super(fullName, drivingLicense, experience, category);
     }
 
     @Override
@@ -20,4 +21,5 @@ public class DriverCategoryB extends Driver{
     public void refill() {
         System.out.println("Водитель категории В " + getFullName() + " заправляется");
     }
+
 }

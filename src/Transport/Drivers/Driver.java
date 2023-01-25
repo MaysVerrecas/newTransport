@@ -1,20 +1,23 @@
-package Drivers;
-
-import Transport.Transport;
+package Transport.Drivers;
 
 import java.util.Objects;
 
 public abstract class Driver{
+    public enum Category{
+        B,C,D;
+    }
 
     private final String fullName;
     private  boolean drivingLicense; // категория прав
     private int experience; //опыт водительский
+    private final Category category;
 
 
-    public Driver(String fullName, boolean drivingLicense, int experience) {
+    public Driver(String fullName, boolean drivingLicense, int experience, Category category) {
         this.fullName = fullName;
         this.drivingLicense = drivingLicense;
         this.experience = experience;
+        this.category = category;
     }
 
     public abstract void startMove();
@@ -62,5 +65,9 @@ public abstract class Driver{
                 ", drivingLicense='" + drivingLicense + '\'' +
                 ", Experience=" + experience +
                 '}';
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }
