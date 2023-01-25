@@ -10,7 +10,9 @@ import Transport.races.Trucks;
 import Transport.staff.Mechanics;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -66,11 +68,13 @@ public class Main {
 
         List<Transport> carRaces = List.of(c1, c2, c3, c4, t1, t2, t3, t4, b1, b2, b3, b4);
 
-        List<Driver> driverRaces = new ArrayList<>();
+        Set<Driver> driverRaces = new HashSet<>();
         for (Transport car : carRaces) {
             driverRaces.add(car.getDriver());
         }
-        printMechanicsInfo(carRaces);
+        driverRaces.add(dd);
+//        printMechanicsInfo(carRaces);
+        System.out.println(driverRaces.toString());
     }
     private static void printInfo(Transport<?> transport) {
         System.out.println("водитель " + transport.getDriver().getFullName() +
@@ -86,7 +90,7 @@ public class Main {
         }
     }
     private static void printMechanicsInfo(Transport car) {
-        System.out.println("Зв рулем автомобиля " + car.getBrand() + " " + car.getModel() +
+        System.out.println("За рулем автомобиля " + car.getBrand() + " " + car.getModel() +
                 " водитель " + car.getDriver().getFullName() + ".  Команда механников авто : " + car.getMechanicsTeam().toString());
     }
 
