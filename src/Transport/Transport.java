@@ -5,10 +5,7 @@ import Transport.Drivers.DriverCategoryB;
 import Transport.exeption.InvalidTypeLicenseExeption;
 import Transport.staff.Mechanics;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 public abstract class Transport<T extends Driver> {
@@ -18,7 +15,7 @@ public abstract class Transport<T extends Driver> {
     private double engineCapacity;
 
     private int allTime; // общее время до финиша
-    private List<Mechanics<?>> mechanicsTeam = new ArrayList<>();
+    private static Map<Transport, Set<Mechanics>> mechanicsTeam = new HashMap<>();
 
 
     public Transport(String brand,
@@ -42,7 +39,7 @@ public abstract class Transport<T extends Driver> {
             this.engineCapacity = engineCapacity;
         }
         this.driver = driver;
-        this.mechanicsTeam = mechanicsTeam;
+        mechanicsTeam.put(this, new HashSet<>());
     }
 
     public final String getBrand() {
@@ -54,18 +51,19 @@ public abstract class Transport<T extends Driver> {
     }
 
     public abstract void startMoving();
+
     public abstract void finishMoving();
+
     public abstract void printType();
+
     public abstract void passDiagnostics() throws InvalidTypeLicenseExeption;
+
     public abstract void repair();
 
     public T getDriver() {
         return driver;
     }
 
-    public void addMechanics (Mechanics<?> ... mechanics) {
-        mechanicsTeam.addAll(Arrays.asList(mechanics));
-    }
 
     public double getEngineCapacity() {
         return engineCapacity;
@@ -77,8 +75,18 @@ public abstract class Transport<T extends Driver> {
         }
     }
 
-    public List<Mechanics<?>> getMechanicsTeam() {
-        return mechanicsTeam;
+    public String getMechanicsTeam() {
+       return mechanicsTeam.get(this).toString();
+    }
+
+    public void addMechanics(Mechanics ... mechanics) {
+
+        Set<Mechanics> set = mechanicsTeam.get(this);
+        //чтоб ничего не затиралось получаем прошлый сет механиков
+        set.addAll(Arrays.asList(mechanics));
+        //добавляем в прошлый сет все введенные значения
+        mechanicsTeam.put(this, set);
+        //затираем прошлое значение и вставляем видоизмененный сет
     }
 
     @Override

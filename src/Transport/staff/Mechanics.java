@@ -30,6 +30,7 @@ public class Mechanics <T extends Transport> {
         return fullName;
     }
 
+
     public String getCompany() {
         return company;
     }

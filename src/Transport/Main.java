@@ -9,10 +9,7 @@ import Transport.races.PassengerCars;
 import Transport.races.Trucks;
 import Transport.staff.Mechanics;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,7 +37,8 @@ public class Main {
 
         // машины
         PassengerCars c1 = new PassengerCars("C1", "model", 1.5, misha, PassengerCars.BodyType.SEDAN);
-        c1.addMechanics(m1,m4);
+        c1.addMechanics(m1,m4,m1,m1,m1);
+        c1.addMechanics(m2);
         PassengerCars c2 = new PassengerCars("C2", "model", 1.5, kostya, PassengerCars.BodyType.SEDAN);
         c2.addMechanics(m2);
         PassengerCars c3 = new PassengerCars("C3", "model", 1.5, ivan, PassengerCars.BodyType.SEDAN);
@@ -66,15 +64,19 @@ public class Main {
         Bus b4 = new Bus("B4", "model", 2.0, rosty, Bus.Capacity.MEDIUM);
         b4.addMechanics(m3);
 
-        List<Transport> carRaces = List.of(c1, c2, c3, c4, t1, t2, t3, t4, b1, b2, b3, b4);
+        List<Transport> carRaces = new ArrayList<>(List.of(c1, c2, c3, c4, t1, t2, t3, t4, b1, b2, b3, b4));
+
+
 
         Set<Driver> driverRaces = new HashSet<>();
         for (Transport car : carRaces) {
             driverRaces.add(car.getDriver());
         }
-        driverRaces.add(dd);
-//        printMechanicsInfo(carRaces);
-        System.out.println(driverRaces.toString());
+
+        for (Transport car : carRaces) {
+            System.out.println("У машины " + car.getBrand() + " " + car.getModel() + " есть команда механиков :" + car.getMechanicsTeam());
+            System.out.println();
+        } //Проходим по всем тачкам и проверяем что все механики подавлены и повторений нет.
     }
     private static void printInfo(Transport<?> transport) {
         System.out.println("водитель " + transport.getDriver().getFullName() +
@@ -96,7 +98,7 @@ public class Main {
 
     private static void printMechanicsInfo(List<Transport> carRaces) {
         for (Transport car : carRaces) {
-            System.out.println("Зв рулем автомобиля " + car.getBrand() + " " + car.getModel() +
+            System.out.println("За рулем автомобиля " + car.getBrand() + " " + car.getModel() +
                     " водитель " + car.getDriver().getFullName() + ".  Команда механников авто : " + car.getMechanicsTeam().toString());
         }
     }
