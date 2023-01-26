@@ -1,7 +1,12 @@
 package Transport.races;
 
-import Drivers.DriverCategoryB;
+import Transport.Drivers.Driver;
+import Transport.Drivers.DriverCategoryB;
 import Transport.Transport;
+import Transport.exeption.InvalidTypeLicenseExeption;
+import Transport.staff.Mechanics;
+
+import java.util.List;
 
 public class PassengerCars extends Transport<DriverCategoryB> implements Competing {
     public enum BodyType {
@@ -23,7 +28,15 @@ public class PassengerCars extends Transport<DriverCategoryB> implements Competi
 
 
 
-    public PassengerCars(String brand, String model, double engineCapacity, DriverCategoryB driver, BodyType bodyType) {
+    private final Driver.Category needCategory = Driver.Category.C;
+
+
+
+    public PassengerCars(String brand,
+                         String model,
+                         double engineCapacity,
+                         DriverCategoryB driver,
+                         BodyType bodyType) {
         super(brand, model, engineCapacity, driver);
         this.bodyType = bodyType;
     }
@@ -62,6 +75,21 @@ public class PassengerCars extends Transport<DriverCategoryB> implements Competi
         }
     }
 
+    @Override
+    public void passDiagnostics() throws InvalidTypeLicenseExeption {
+        if (getDriver().getCategory() != getNeedCategory()) {
+            //без прав он не может быть - ограничина енамом и конструктором.
+            throw new InvalidTypeLicenseExeption("Нет нужных прав.");
+        } else {
+            System.out.println("Легковой автомобиль успешно прошел техосмотр!");
+        }
+    }
+
+    @Override
+    public void repair() {
+        System.out.println("Машина " + getBrand() + " " + getModel() + " починена :)");
+    }
+
     public int getAllTime() {
         return allTime;
     }
@@ -75,5 +103,8 @@ public class PassengerCars extends Transport<DriverCategoryB> implements Competi
 
     public void setType(String type) {
         this.type = type;
+    }
+    public Driver.Category getNeedCategory() {
+        return needCategory;
     }
 }
